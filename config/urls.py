@@ -15,12 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from firstapp import views
+from . import c_views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index1/', views.index1),
-    path('index2/', views.index2),
+    path('index1/', c_views.index1),
+    path('index2/', c_views.index2),
     path('first/', include('firstapp.urls')),
     path('second/', include('secondapp.urls')),
     path('third/', include('thirdapp.urls')),
+    path('home/',c_views.home),
+    path(
+        'text/<str:char>/',
+        c_views.text
+    ),
+    path(
+        '<int:year>/<int:month>/',
+        c_views.date
+    ),
+    path('search/', c_views.search),
+    path('info/', c_views.info),
 ]

@@ -1,0 +1,21 @@
+<form action="/first/req/post/" method="post">
+    <input type="text" name="a"><br>
+    <input type="text" name="b"><br>
+    <input type="text" name="c"><br>
+    {% csrf_token %}
+    <button>Send</button>
+</form>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    const data = axios({
+        url: '',
+    });
+    data.then(function (xyz) {
+        console.log(xyz.data);
+        let html = '<ol>';
+        for (let i = 0; i <xyz.data.length;i++) {
+            let kind xyz.data[i]['kind']
+        }
+    });
+</script>

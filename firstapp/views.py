@@ -7,6 +7,8 @@ def index2(request):
     return HttpResponse('<u>Hi</u>')
 def main(request):
     return HttpResponse('<u>Main</u>')
+def home(request):
+    return HttpResponse('<u>Home</u>')
 # Create your views here.
 def insert(request):
 # 1-linux 입력
@@ -25,3 +27,19 @@ def show(request):
         request, 'firstapp/show.html',
         { 'data': curriculum }
     )
+def req_get(request):
+    a = request.GET.get('a')
+    b = request.GET.get('b')
+    c = request.GET['c']
+    result = '%s %s %s' % (a, b, c)
+    return HttpResponse(result)
+def req_post(request):
+    if request.method == 'POST':
+        a = request.POST.get('a')
+        b = request.POST.get('b')
+        c = request.POST['c']
+        result = '%s %s %s' % (a, b, c)
+        return HttpResponse(result)
+    return render(request, 'firstapp/post.html')
+def req_ajax4(request):
+    return render(request, 'firstapp/ajax4.html')
