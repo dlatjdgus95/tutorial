@@ -1,6 +1,7 @@
-import re
-from django.shortcuts import render
+from django.shortcuts import render ,redirect
 from django.http import HttpResponse
+
+from secondapp.forms import CourseForm
 from .models import Course, Armyshop
 # Create your views here.
 def main(request):
@@ -53,3 +54,17 @@ def ajaxPost(request):
      return JsonResponse()
 def ajaxExam(request):
     return render(request,'secondapp/ajax_exam.html')
+from secondapp.forms import CourseForm
+def course_create(request):
+    if request.method == 'POST':
+
+        form = CourseForm(request.POST)
+        if form.is_valid():
+            course = form.save(commit=False)
+            course.save()
+
+            return redirect('firstapp:post')
+        else:
+            form = CourseForm()
+
+    return render(request, 'secondapp/course_create.html',{'form' : form} )

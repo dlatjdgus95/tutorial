@@ -34,4 +34,5 @@ urlpatterns = [
     ),
     path('search/', c_views.search),
     path('info/', c_views.info),
+    path('member/', include('member.urls')),
 ]
